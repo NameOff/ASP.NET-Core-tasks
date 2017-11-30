@@ -42,7 +42,7 @@ namespace Core
 
             app.UseStaticFiles();
 
-            /*
+            
             app.UseMiddleware<RequestTimeMiddleware>();
 
             app.Use(async (context, next) =>
@@ -51,14 +51,8 @@ namespace Core
                 timer.Start();
                 timer.Stop();
                 await next.Invoke();
-                await context.Response.WriteAsync($"Middleware function time: {timer.ElapsedMilliseconds / 1000.0}\n");
+                await context.Response.WriteAsync($"Middleware function time: {timer.ElapsedMilliseconds / 1000.0}<br/>");
             });
-
-            app.Run(async context =>
-            {
-                await context.Response.WriteAsync("done\n");
-            });
-            */
 
             app.UseMvc(routes =>
             {

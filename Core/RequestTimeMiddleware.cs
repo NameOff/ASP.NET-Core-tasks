@@ -21,7 +21,7 @@ namespace Core
             var timer = new Stopwatch();
             timer.Start();
             await next.Invoke(context);
-            await context.Response.WriteAsync($"Middleware class + function time: {timer.ElapsedMilliseconds / 1000.0}\n");
+            await context.Response.WriteAsync($"Middleware class + function time: {timer.ElapsedMilliseconds / 1000.0}");
         }
     }
 }
