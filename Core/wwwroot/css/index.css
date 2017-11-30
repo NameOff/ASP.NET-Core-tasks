@@ -1,0 +1,51 @@
+.add,
+.back
+{
+	display: block;
+	margin-bottom: 20px;
+}
+
+label
+{
+	display: block;
+}
+
+.students
+{
+	text-align: center;
+}
+
+.students th,
+.students
+{
+	border: 1px solid #000;
+}
+
+.students th
+{
+	font-weight: 100;
+}
+
+.student div:not(:last-child)
+{
+	margin-bottom: 20px;
+}
+
+.student span
+{
+	font-weight: bold;
+}
+
+.student
+{
+	margin: 20px 20px;
+	padding: 10px 10px;
+	border: 1px solid #000;
+	width: 300px;
+}
+
+.student a
+{
+    text-decoration: none;
+    margin-right: 20px;
+}

@@ -1,8 +1,23 @@
-﻿@model object
+﻿@using Core.Models
+@model Student
 
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
 
-<h2>title</h2>
+<a href="/student/all" class="back">Вернуться к списку</a>
+
+<div class="student">
+    <div><span>Имя:</span> @Model.Name</div>
+    <div><span>Фамилия:</span> @Model.Surname</div>
+    <div><span>Возраст:</span> @Model.Age</div>
+    <div class="change">
+        <a href="/student/update?id=@Model.Id">
+            <button>Редактировать</button>
+        </a>
+        <a href="/student/delete?id=@Model.Id">
+            <button>Удалить</button>
+        </a>
+    </div>
+</div>

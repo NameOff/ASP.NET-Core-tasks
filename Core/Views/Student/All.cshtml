@@ -1,0 +1,38 @@
+﻿@using Core.Models
+@model IEnumerable<Student>
+
+@{
+    ViewBag.Title = "All students";
+    Layout = "_Layout";
+}
+
+@if (Model.Any())
+{
+    <table class="students">
+        <caption>Все студенты</caption>
+        <tr>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Возраст</th>
+        </tr>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <th class="feature">@student.Surname</th>
+                <th class="feature">@student.Name</th>
+                <th class="feature">@student.Age</th>
+                <th>
+                    <a href="/student/get?id=@student.Id">
+                        <button>Открыть</button>
+                    </a>
+                </th>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="nothing">Список студентов пуст...</div>
+}
+
+<div><a href="/student/add">Добавить студента</a></div>

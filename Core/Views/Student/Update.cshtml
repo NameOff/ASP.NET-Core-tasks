@@ -1,0 +1,17 @@
+﻿@model Core.Models.Student
+
+@{
+    ViewBag.Title = "Редактирование";
+    Layout = "_Layout";
+}
+
+@using (Html.BeginForm("Update", "Student", new {id = Model.Id}, FormMethod.Post))
+{
+    @Html.LabelFor(m => m.Name, "Имя:")
+    @Html.TextBox("Name", Model.Name);
+    @Html.LabelFor(m => m.Surname, "Фамилия:")
+    @Html.TextBox("Surname", Model.Surname);
+    @Html.LabelFor(m => m.Age, "Возраст")
+    <input class="add" type="number" name="age" value="@Model.Age"/>
+    <input class="add" type="submit" value="Отправить" />
+}

@@ -33,7 +33,16 @@ namespace Core
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
+
+            app.UseStaticFiles();
+
+            /*
             app.UseMiddleware<RequestTimeMiddleware>();
 
             app.Use(async (context, next) =>
@@ -48,6 +57,14 @@ namespace Core
             app.Run(async context =>
             {
                 await context.Response.WriteAsync("done\n");
+            });
+            */
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
