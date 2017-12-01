@@ -1,12 +1,15 @@
-﻿@using Core.Models
-@model IEnumerable<Student>
+﻿@using Core.Services
 
 @{
     ViewBag.Title = "All students";
     Layout = "_Layout";
 }
 
-@if (Model.Any())
+@inject IStudentService service
+@{
+    var students = await service.GetAll();
+}
+@if (students.Any())
 {
     <table class="students">
         <caption>Все студенты</caption>
@@ -15,7 +18,7 @@
             <th>Имя</th>
             <th>Возраст</th>
         </tr>
-        @foreach (var student in Model)
+        @foreach (var student in students)
         {
             <tr>
                 <th class="feature">@student.Surname</th>

@@ -1,19 +1,18 @@
-﻿using System.Runtime.InteropServices.ComTypes;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Core.Models;
 using Core.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Core.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly IStudentService service;
+        private readonly IStudentService studentService;
 
         public StudentController(IStudentService service)
         {
-            this.service = service;
+            studentService = service;
         }
 
         [HttpGet]
@@ -23,24 +22,26 @@ namespace Core.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Student student)
+        public IActionResult Create([FromServices]IStudentService service, Student student)
         {
             service.Create(student);
             return RedirectToAction("All");
         }
 
         [HttpGet]
-        public async Task<IActionResult> All()
+        public IActionResult All()
         {
-            return View(await service.GetAll());
+            return View();
         }
 
         [HttpGet]
         public async Task<IActionResult> Get(int? id)
         {
+            var service = ActivatorUtilities
+                .GetServiceOrCreateInstance<IStudentService>(HttpContext.RequestServices);
             if (id != null)
             {
-                var student = await service.Get((int) id);
+                var student = await service.Get((int)id);
                 if (student != null)
                     return View(student);
             }
@@ -50,16 +51,19 @@ namespace Core.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(Student student)
         {
+            var service = (IStudentService)HttpContext
+                .RequestServices
+                .GetService(typeof(IStudentService));
             await service.Update(student);
             return RedirectToAction("Get", new { id = student.Id });
         }
-            
+
         [HttpGet]
         public async Task<IActionResult> Update(int? id)
         {
             if (id != null)
             {
-                var student = await service.Get((int)id);
+                var student = await studentService.Get((int)id);
                 if (student != null)
                     return View(student);
             }
@@ -71,7 +75,7 @@ namespace Core.Controllers
         {
             if (id == null)
                 return NotFound();
-            await service.Delete((int) id);
+            await studentService.Delete((int)id);
             return RedirectToAction("All");
         }
     }
