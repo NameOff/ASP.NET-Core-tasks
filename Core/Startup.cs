@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading;
 using Core.Models;
+using Core.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -25,6 +26,7 @@ namespace Core
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<StudentsContext>(options =>
                 options.UseSqlServer(connection));
+            services.AddTransient<IStudentService, StudentService>();
             services.AddMvc();
         }
 
@@ -49,6 +51,7 @@ namespace Core
             {
                 var timer = new Stopwatch();
                 timer.Start();
+                //Do something
                 timer.Stop();
                 await next.Invoke();
                 await context.Response.WriteAsync($"Middleware function time: {timer.ElapsedMilliseconds / 1000.0}<br/>");
