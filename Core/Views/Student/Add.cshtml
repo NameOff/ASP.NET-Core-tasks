@@ -8,11 +8,17 @@
 
 @using (Html.BeginForm("Create", "Student", FormMethod.Post))
 {
+    @Html.ValidationMessageFor(m => m.Name)
     @Html.LabelFor(m => m.Name, "Имя:")
     @Html.TextBox("Name");
+    @Html.ValidationMessageFor(m => m.Surname)
     @Html.LabelFor(m => m.Surname, "Фамилия:")
     @Html.TextBox("Surname");
-    @Html.LabelFor(m => m.Age, "Возраст")
+    @Html.ValidationMessageFor(m => m.Group)
+    @Html.LabelFor(m => m.Group, "Группа:")
+    @Html.TextBox("Group");
+    @Html.ValidationMessageFor(m => m.Age)
+    @Html.LabelFor(m => m.Age)
     <input class="add" type="number" name="age"/>
     <input class="add" type="submit" value="Отправить"/>
 }

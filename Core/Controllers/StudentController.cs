@@ -2,6 +2,7 @@
 using Core.Models;
 using Core.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Core.Controllers
@@ -24,6 +25,8 @@ namespace Core.Controllers
         [HttpPost]
         public IActionResult Create([FromServices]IStudentService service, Student student)
         {
+            if (!ModelState.IsValid)
+                return View("Add", student);
             service.Create(student);
             return RedirectToAction("All");
         }

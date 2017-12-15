@@ -5,12 +5,18 @@
     Layout = "_Layout";
 }
 
-@using (Html.BeginForm("Update", "Student", new {id = Model.Id}, FormMethod.Post))
+@using (Html.BeginForm("Update", "Student", new { id = Model.Id }, FormMethod.Post))
 {
+    @Html.ValidationMessageFor(m => m.Name)
     @Html.LabelFor(m => m.Name, "Имя:")
     @Html.TextBox("Name", Model.Name);
+    @Html.ValidationMessageFor(m => m.Surname)
     @Html.LabelFor(m => m.Surname, "Фамилия:")
-    @Html.TextBox("Surname", Model.Surname);
+    @Html.TextBox("Surname", Model.Surname)
+    @Html.ValidationMessageFor(m => m.Group);
+    @Html.LabelFor(m => m.Group, "Группа:")
+    @Html.TextBox("Group", Model.Group);
+    @Html.ValidationMessageFor(m => m.Age)
     @Html.LabelFor(m => m.Age, "Возраст")
     <input class="add" type="number" name="age" value="@Model.Age"/>
     <input class="add" type="submit" value="Отправить" />

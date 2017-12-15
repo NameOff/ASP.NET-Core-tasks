@@ -17,6 +17,7 @@
             <th>Фамилия</th>
             <th>Имя</th>
             <th>Возраст</th>
+            <th>Группа</th>
         </tr>
         @foreach (var student in students)
         {
@@ -24,6 +25,7 @@
                 <th class="feature">@student.Surname</th>
                 <th class="feature">@student.Name</th>
                 <th class="feature">@student.Age</th>
+                <th class="feature">@student.Group</th>
                 <th>
                     <a href="/student/get?id=@student.Id">
                         <button>Открыть</button>
