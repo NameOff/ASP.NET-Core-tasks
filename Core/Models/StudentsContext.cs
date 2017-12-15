@@ -12,8 +12,13 @@ namespace Core.Models
 
         public StudentsContext(DbContextOptions<StudentsContext> options)
             : base(options)
-        {
+        { }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Student>()
+                .Property(s => s.Faculty)
+                .IsRequired();
         }
     }
 }

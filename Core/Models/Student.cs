@@ -26,6 +26,9 @@ namespace Core.Models
         [Display(Name = "Группа")]
         public string Group { get; set; }
 
+
+        public string Faculty { get; set; }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (Age <= 0)

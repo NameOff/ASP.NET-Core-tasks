@@ -1,6 +1,14 @@
-﻿
+﻿@using Microsoft.Extensions.Configuration
+
 @{
     ViewData["Title"] = "_Layout";
+}
+
+@inject IConfiguration Config
+@{
+    var name = Config.GetSection("Name").Value;
+    var lastName = Config.GetSection("Surname").Value;
+    var email = Config.GetSection("Email").Value;
 }
 
 <!DOCTYPE html>
@@ -12,7 +20,10 @@
     </environment>
 </head>
 <body>
-    @RenderBody()
-    <hr/>
+@RenderBody()
+<hr/>
+<footer>
+    @($"{name} {lastName} {email}")
+</footer>
 </body>
 </html>
