@@ -1,14 +1,16 @@
 ﻿@using Microsoft.Extensions.Configuration
+@using Microsoft.Extensions.Options
+@using Core.Models
 
 @{
     ViewData["Title"] = "_Layout";
 }
 
-@inject IConfiguration Config
+@inject IOptions<Author> options
 @{
-    var name = Config.GetSection("Name").Value;
-    var lastName = Config.GetSection("Surname").Value;
-    var email = Config.GetSection("Email").Value;
+    var name = options.Value.Name;
+    var surname = options.Value.Surname;
+    var email = options.Value.Email;
 }
 
 <!DOCTYPE html>
@@ -23,7 +25,7 @@
 @RenderBody()
 <hr/>
 <footer>
-    @($"{name} {lastName} {email}")
+    @($"{name} {surname} {email}")
 </footer>
 </body>
 </html>

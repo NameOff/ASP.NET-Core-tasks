@@ -29,7 +29,7 @@
                 <th class="feature">@student.Group</th>
                 <th class="feature">@student.Faculty</th>
                 <th>
-                    <a href="/student/get?id=@student.Id">
+                    <a href="@Url.Action("Get", "Student", new { id = student.Id })">
                         <button>Открыть</button>
                     </a>
                 </th>

@@ -19,14 +19,14 @@ namespace Core.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            return View();
+            return View("AddOrUpdate");
         }
 
         [HttpPost]
         public IActionResult Create([FromServices]IStudentService service, Student student)
         {
             if (!ModelState.IsValid)
-                return View("Add", student);
+                return View("AddOrUpdate", student);
             service.Create(student);
             return RedirectToAction("All");
         }
@@ -68,7 +68,7 @@ namespace Core.Controllers
             {
                 var student = await studentService.Get((int)id);
                 if (student != null)
-                    return View(student);
+                    return View("AddOrUpdate", student);
             }
             return NotFound();
         }

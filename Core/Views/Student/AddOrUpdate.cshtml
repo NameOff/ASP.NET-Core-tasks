@@ -1,7 +1,7 @@
 ﻿@model Core.Models.Student
 
 @{
-    ViewBag.Title = "Редактирование";
+    ViewBag.Title = Model == null || Model.Id == 0 ? "Add" : "Update";
     Layout = "_Layout";
 }
 
@@ -9,17 +9,22 @@
 {
     @Html.ValidationMessageFor(m => m.Name)
     @Html.LabelFor(m => m.Name, "Имя:")
-    @Html.TextBox("Name", Model.Name);
+    @Html.TextBoxFor(m => Model.Name);
+
     @Html.ValidationMessageFor(m => m.Surname)
     @Html.LabelFor(m => m.Surname, "Фамилия:")
-    @Html.TextBox("Surname", Model.Surname)
+    @Html.TextBoxFor(m => Model.Surname)
+
     @Html.ValidationMessageFor(m => m.Group);
     @Html.LabelFor(m => m.Group, "Группа:")
-    @Html.TextBox("Group", Model.Group);
+    @Html.TextBoxFor(m => Model.Group);
+
     @Html.ValidationMessageFor(m => m.Age)
     @Html.LabelFor(m => m.Faculty, "Факультет:")
-    @Html.TextBox("Faculty");
-    @Html.LabelFor(m => m.Age, "Возраст")
-    <input class="add" type="number" name="age" value="@Model.Age"/>
+    @Html.TextBoxFor(m => m.Faculty);
+
+    @Html.LabelFor(m => m.Age, "Возраст:")
+    @Html.TextBoxFor(m => m.Age, new { @class = "add", type = "number" })
+
     <input class="add" type="submit" value="Отправить" />
 }

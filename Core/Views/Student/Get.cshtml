@@ -6,7 +6,7 @@
     Layout = "_Layout";
 }
 
-<a href="/student/all" class="back">Вернуться к списку</a>
+<a href="@Url.Action("All", "Student")" class="back">Вернуться к списку</a>
 
 <div class="student">
     <div><span>Имя:</span> @Model.Name</div>
@@ -15,10 +15,10 @@
     <div><span>Группа:</span> @Model.Group</div>
     <div><span>Факультет:</span> @Model.Faculty</div>
     <div class="change">
-        <a href="/student/update?id=@Model.Id">
+        <a href="@Url.Action("Update", "Student", new { id = Model.Id })">
             <button>Редактировать</button>
         </a>
-        <a href="/student/delete?id=@Model.Id">
+        <a href="@Url.Action("Delete", "Student", new { id = Model.Id })">
             <button>Удалить</button>
         </a>
     </div>

@@ -27,6 +27,7 @@ namespace Core
             services.AddDbContext<StudentsContext>(options =>
                 options.UseSqlServer(connection));
             services.AddTransient<IStudentService, StudentService>();
+            services.Configure<Author>(Configuration);
             services.AddMvc();
         }
 
